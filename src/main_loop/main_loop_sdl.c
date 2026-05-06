@@ -85,39 +85,40 @@
 #define CWIN_HIT_TEST SDL_WINDOWEVENT_HIT_TEST
 #endif
 
+/* SDL_PollEvent()->type constants; CSDL_* must not shadow AWTK event_type_t EVT_* names in events.h */
 #ifdef AWTK_SDL3
-#define EVT_DROPFILE SDL_EVENT_DROP_FILE
-#define EVT_KEY_DOWN SDL_EVENT_KEY_DOWN
-#define EVT_KEY_UP SDL_EVENT_KEY_UP
-#define EVT_MOUSE_MOTION SDL_EVENT_MOUSE_MOTION
-#define EVT_MOUSE_BTN_DOWN SDL_EVENT_MOUSE_BUTTON_DOWN
-#define EVT_MOUSE_BTN_UP SDL_EVENT_MOUSE_BUTTON_UP
-#define EVT_FINGER_DOWN SDL_EVENT_FINGER_DOWN
-#define EVT_FINGER_UP SDL_EVENT_FINGER_UP
-#define EVT_FINGER_MOTION SDL_EVENT_FINGER_MOTION
-#define EVT_TEXT_INPUT SDL_EVENT_TEXT_INPUT
-#define EVT_TEXT_EDIT SDL_EVENT_TEXT_EDITING
-#define EVT_MOUSE_WHEEL SDL_EVENT_MOUSE_WHEEL
-#define EVT_QUIT SDL_EVENT_QUIT
-#define EVT_RENDER_DEV SDL_EVENT_RENDER_DEVICE_RESET
-#define EVT_RENDER_TGT SDL_EVENT_RENDER_TARGETS_RESET
+#define CSDL_DROPFILE SDL_EVENT_DROP_FILE
+#define CSDL_KEY_DOWN SDL_EVENT_KEY_DOWN
+#define CSDL_KEY_UP SDL_EVENT_KEY_UP
+#define CSDL_MOUSE_MOTION SDL_EVENT_MOUSE_MOTION
+#define CSDL_MOUSE_BTN_DOWN SDL_EVENT_MOUSE_BUTTON_DOWN
+#define CSDL_MOUSE_BTN_UP SDL_EVENT_MOUSE_BUTTON_UP
+#define CSDL_FINGER_DOWN SDL_EVENT_FINGER_DOWN
+#define CSDL_FINGER_UP SDL_EVENT_FINGER_UP
+#define CSDL_FINGER_MOTION SDL_EVENT_FINGER_MOTION
+#define CSDL_TEXT_INPUT SDL_EVENT_TEXT_INPUT
+#define CSDL_TEXT_EDIT SDL_EVENT_TEXT_EDITING
+#define CSDL_MOUSE_WHEEL SDL_EVENT_MOUSE_WHEEL
+#define CSDL_QUIT SDL_EVENT_QUIT
+#define CSDL_RENDER_DEV SDL_EVENT_RENDER_DEVICE_RESET
+#define CSDL_RENDER_TGT SDL_EVENT_RENDER_TARGETS_RESET
 #else
-#define EVT_DROPFILE SDL_DROPFILE
-#define EVT_KEY_DOWN SDL_KEYDOWN
-#define EVT_KEY_UP SDL_KEYUP
-#define EVT_MOUSE_MOTION SDL_MOUSEMOTION
-#define EVT_MOUSE_BTN_DOWN SDL_MOUSEBUTTONDOWN
-#define EVT_MOUSE_BTN_UP SDL_MOUSEBUTTONUP
-#define EVT_FINGER_DOWN SDL_FINGERDOWN
-#define EVT_FINGER_UP SDL_FINGERUP
-#define EVT_FINGER_MOTION SDL_FINGERMOTION
-#define EVT_TEXT_INPUT SDL_TEXTINPUT
-#define EVT_TEXT_EDIT SDL_TEXTEDITING
-#define EVT_MOUSE_WHEEL SDL_MOUSEWHEEL
-#define EVT_MULTIGESTURE SDL_MULTIGESTURE
-#define EVT_QUIT SDL_QUIT
-#define EVT_RENDER_DEV SDL_RENDER_DEVICE_RESET
-#define EVT_RENDER_TGT SDL_RENDER_TARGETS_RESET
+#define CSDL_DROPFILE SDL_DROPFILE
+#define CSDL_KEY_DOWN SDL_KEYDOWN
+#define CSDL_KEY_UP SDL_KEYUP
+#define CSDL_MOUSE_MOTION SDL_MOUSEMOTION
+#define CSDL_MOUSE_BTN_DOWN SDL_MOUSEBUTTONDOWN
+#define CSDL_MOUSE_BTN_UP SDL_MOUSEBUTTONUP
+#define CSDL_FINGER_DOWN SDL_FINGERDOWN
+#define CSDL_FINGER_UP SDL_FINGERUP
+#define CSDL_FINGER_MOTION SDL_FINGERMOTION
+#define CSDL_TEXT_INPUT SDL_TEXTINPUT
+#define CSDL_TEXT_EDIT SDL_TEXTEDITING
+#define CSDL_MOUSE_WHEEL SDL_MOUSEWHEEL
+#define CSDL_MULTIGESTURE SDL_MULTIGESTURE
+#define CSDL_QUIT SDL_QUIT
+#define CSDL_RENDER_DEV SDL_RENDER_DEVICE_RESET
+#define CSDL_RENDER_TGT SDL_RENDER_TARGETS_RESET
 #endif
 
 #include <stdio.h>
@@ -536,7 +537,7 @@ ret_t main_loop_sdl2_dispatch(main_loop_simple_t* loop) {
     }
 #endif
     switch (event.type) {
-      case EVT_DROPFILE: {
+      case CSDL_DROPFILE: {
         drop_file_event_t drop;
         widget_t* top = window_manager_get_top_window(wm);
 #ifdef AWTK_SDL3
@@ -552,37 +553,37 @@ ret_t main_loop_sdl2_dispatch(main_loop_simple_t* loop) {
 
         break;
       }
-      case EVT_KEY_DOWN:
-      case EVT_KEY_UP: {
+      case CSDL_KEY_DOWN:
+      case CSDL_KEY_UP: {
         ret = main_loop_sdl2_dispatch_key_event(loop, &event);
         break;
       }
-      case EVT_MOUSE_MOTION:
-      case EVT_MOUSE_BTN_DOWN:
-      case EVT_MOUSE_BTN_UP: {
+      case CSDL_MOUSE_MOTION:
+      case CSDL_MOUSE_BTN_DOWN:
+      case CSDL_MOUSE_BTN_UP: {
         ret = main_loop_sdl2_dispatch_mouse_event(loop, &event);
         break;
       }
-      case EVT_FINGER_DOWN:
-      case EVT_FINGER_UP:
-      case EVT_FINGER_MOTION: {
+      case CSDL_FINGER_DOWN:
+      case CSDL_FINGER_UP:
+      case CSDL_FINGER_MOTION: {
         ret = main_loop_sdl2_dispatch_touch_event(loop, &event);
         break;
       }
-      case EVT_TEXT_INPUT: {
+      case CSDL_TEXT_INPUT: {
         ret = main_loop_sdl2_dispatch_text_input(loop, &event);
         break;
       }
-      case EVT_TEXT_EDIT: {
+      case CSDL_TEXT_EDIT: {
         ret = main_loop_sdl2_dispatch_text_editing(loop, &event);
         break;
       }
-      case EVT_MOUSE_WHEEL: {
+      case CSDL_MOUSE_WHEEL: {
         ret = main_loop_sdl2_dispatch_wheel_event(loop, &event);
         break;
       }
 #ifndef AWTK_SDL3
-      case EVT_MULTIGESTURE: {
+      case CSDL_MULTIGESTURE: {
         ret = main_loop_sdl2_dispatch_multi_gesture_event(loop, &event);
         break;
       }
@@ -596,7 +597,7 @@ ret_t main_loop_sdl2_dispatch(main_loop_simple_t* loop) {
         break;
       }
 #endif
-      case EVT_RENDER_DEV: {
+      case CSDL_RENDER_DEV: {
 #ifdef WITH_NANOVG_SOFT
         native_window_t* native_window =
             (native_window_t*)widget_get_prop_pointer(window_manager(), WIDGET_PROP_NATIVE_WINDOW);
@@ -609,12 +610,12 @@ ret_t main_loop_sdl2_dispatch(main_loop_simple_t* loop) {
         log_debug("SDL_RENDER_DEVICE_RESET\n");
         break;
       }
-      case EVT_RENDER_TGT: {
+      case CSDL_RENDER_TGT: {
         widget_invalidate_force(wm, NULL);
         log_debug("SDL_RENDER_TARGETS_RESET\n");
         break;
       }
-      case EVT_QUIT: {
+      case CSDL_QUIT: {
         event_t e = event_init(EVT_REQUEST_QUIT_APP, NULL);
         if (widget_dispatch(wm, &e) == RET_OK) {
           main_loop_quit((main_loop_t*)loop);
