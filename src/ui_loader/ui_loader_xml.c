@@ -678,6 +678,7 @@ static void xml_loader_on_pi(XmlBuilder* thiz, const char* tag, const char** att
         b_include.properties_state = b->properties_state;
         b_include.is_set_name = b->is_set_name;
         b_include.is_on_start = b->is_on_start;
+        b_include.tag_is_include = b->tag_is_include;
         b_include.attrs_capacity = b->attrs_capacity;
         b_include.attrs_nr = b->attrs_nr;
         b_include.buffer = b->buffer;
