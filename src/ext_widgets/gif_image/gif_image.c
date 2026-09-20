@@ -604,7 +604,9 @@ static ret_t gif_image_init(widget_t* widget) {
 #ifdef AWTK_WEB
   gif_image->part_buffer_load_mode = TRUE;
 #endif /*AWTK_WEB*/
+#ifdef WITH_STB_IMAGE
   stb_gif_frame_create(&(gif_image->gif_context), &(gif_image->gif_msg));
+#endif
 
   return RET_OK;
 }

@@ -1,5 +1,8 @@
 # 最新动态
 
+2026/9/20
+  * 完善 gif_image 的初始化(感谢泽武提供补丁)
+
 2026/9/18
   * 增加 idle_remove_ex(感谢朝泽提供补丁)
   * harfbuzz 文档添加 awtk-web 和 awtk-android 的使用操作 (感谢泽武提供补丁)
