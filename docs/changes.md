@@ -1,5 +1,8 @@
 # 最新动态
 
+2026/9/21
+  * tk_ostream_write_len 在 EAGAIN 时改为 flush，避免固定 sleep 影响串口时序
+
 2026/9/20
   * 完善 gif_image 的初始化(感谢泽武提供补丁)
   * 修复xml_to_ui打包时可能出现告警的问题(感谢泽武提供补丁)
