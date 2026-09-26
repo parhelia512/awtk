@@ -102,7 +102,7 @@ ret_t idle_remove(uint32_t idle_id);
 /**
  * @method idle_remove_ex
  * 删除指定的idle。
- * @annotation ["scriptable", "static"]
+ * @annotation ["static"]
  * @param {tk_compare_t} compare idle_info_t比较函数。
  * @param {void*} ctx 比较函数的上下文。
  *
